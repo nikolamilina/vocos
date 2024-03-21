@@ -4,5 +4,4 @@ numpy
 scipy
 einops
 pyyaml
-huggingface_hub
 encodec==0.1.1

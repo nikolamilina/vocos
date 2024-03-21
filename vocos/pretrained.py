@@ -4,7 +4,6 @@ from typing import Any, Dict, Tuple, Union, Optional
 
 import torch
 import yaml
-from huggingface_hub import hf_hub_download
 from torch import nn
 from vocos.feature_extractors import FeatureExtractor, EncodecFeatures
 from vocos.heads import FourierHead
@@ -64,8 +63,8 @@ class Vocos(nn.Module):
         """
         Class method to create a new Vocos model instance from a pre-trained model stored in the Hugging Face model hub.
         """
-        config_path = hf_hub_download(repo_id=repo_id, filename="config.yaml", revision=revision)
-        model_path = hf_hub_download(repo_id=repo_id, filename="pytorch_model.bin", revision=revision)
+        config_path = "config.yaml"
+        model_path = "pytorch_model.bin"
         model = cls.from_hparams(config_path)
         state_dict = torch.load(model_path, map_location="cpu")
         if isinstance(model.feature_extractor, EncodecFeatures):
